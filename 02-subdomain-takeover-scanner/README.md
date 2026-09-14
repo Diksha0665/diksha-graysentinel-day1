@@ -19,6 +19,19 @@ This is dangerous because the subdomain still looks 100% legitimate
 for phishing, cookie theft, and brand impersonation.
 
 
+## Folder Structure
+
+```
+02-subdomain-takeover-scanner/
+├── README.md              # This file — setup, usage, and documentation
+├── report.md               # Scan methodology, results, and PoC evidence
+├── domains.txt              # Input file — list of target domains to scan
+├── scan_results.txt         # Output file — generated after running the scanner
+└── src/
+    ├── scanner.py            # Main scanner logic
+    └── mock_vulnerable_server.py   # Local server used to test/prove detection works
+```
+
 ## Example Output
 
 ```
