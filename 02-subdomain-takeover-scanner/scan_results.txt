@@ -1,0 +1,8 @@
+Domain                              CNAME                          Service         Vulnerable
+-----------------------------------------------------------------------------------------------
+www.wikipedia.org                   dyna.wikimedia.org.            N/A             No        
+www.google.com                      None                           N/A             No        
+nonexistent-domain-xyz123.com       None                           N/A             No        
+docs.python.org                     dualstack.python.map.fastly.net. N/A             No        
+mail.google.com                     None                           N/A             No        
+help.github.com                     None                           N/A             No        
