@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GraySentinel | Security Verification</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="nav-content">
+
+        <div class="logo">
+
+            <div class="logo-icon">🛡</div>
+
+            <div class="logo-text">
+
+                <h2>GRAY SENTINEL</h2>
+
+                <span>CYBER DEFENCE LAB</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-status">
+
+            <span class="status-dot"></span>
+
+            TRAINING ENVIRONMENT
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<main class="container">
+
+    <div class="simulation-card">
+
+        <div class="warning-icon">
+            ⚠️
+        </div>
+
+
+        <div class="eyebrow">
+            SECURITY AWARENESS SIMULATION
+        </div>
+
+
+        <h1>
+            Verification Portal
+        </h1>
+
+
+        <p style="
+            color:#94a3b8;
+            margin-top:10px;
+            line-height:1.6;
+        ">
+            This page is part of a controlled cybersecurity
+            awareness exercise.
+        </p>
+
+
+        {% if submitted %}
+
+        <div class="success-message" style="margin-top:22px;">
+
+            <strong>
+                ✓ Simulation recorded successfully
+            </strong>
+
+            <br><br>
+
+            No username or password was stored.
+
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST" style="margin-top:25px;">
+
+            <div class="form-group">
+
+                <label>
+                    Test Username
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter test username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Test Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter dummy password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+                style="width:100%; justify-content:center;"
+            >
+                Simulate Login
+            </button>
+
+        </form>
+
+
+        <div class="training-note">
+
+            🔒 <strong>Training Notice</strong>
+
+            <br><br>
+
+            Do not enter real credentials into this page.
+            This simulator records only that a mock submission
+            occurred and intentionally does not store passwords.
+
+        </div>
+
+
+        <div style="
+            margin-top:25px;
+            text-align:center;
+        ">
+
+            <a href="/" class="btn">
+                ← Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    CONTROLLED • LOCAL • NON-CREDENTIAL-COLLECTING
+
+</footer>
+
+</body>
+
+</html>

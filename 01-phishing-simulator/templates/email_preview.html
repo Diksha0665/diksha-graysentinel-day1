@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GraySentinel | Email Preview</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="nav-content">
+
+        <div class="logo">
+
+            <div class="logo-icon">🛡</div>
+
+            <div class="logo-text">
+                <h2>GRAY SENTINEL</h2>
+                <span>CYBER DEFENCE LAB</span>
+            </div>
+
+        </div>
+
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            SIMULATION MODE
+        </div>
+
+    </div>
+
+</nav>
+
+
+<main class="container">
+
+    <div class="email-shell">
+
+        <div class="eyebrow">
+            SIMULATED PHISHING EMAIL
+        </div>
+
+        <div class="email-card">
+
+            <div class="email-header">
+
+                <strong>Security Awareness Training</strong>
+
+                <div style="margin-top:8px;">
+                    <small>
+                        To:
+                        {{ recipient["name"] }}
+                        &lt;{{ recipient["email"] }}&gt;
+                    </small>
+                </div>
+
+                <div style="margin-top:5px;">
+                    <small>
+                        Subject:
+                        <strong>{{ campaign["subject"] }}</strong>
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="email-body">
+
+                <div class="email-warning">
+                    ⚠️ TRAINING SIMULATION — This is not a real email.
+                </div>
+
+
+                <h2>Security Verification Required</h2>
+
+                <p style="margin-top:15px; line-height:1.7;">
+                    This controlled scenario demonstrates how a suspicious
+                    security message may attempt to encourage a user to
+                    follow an embedded link.
+                </p>
+
+
+                <p style="margin-top:15px; line-height:1.7;">
+                    In a real phishing incident, unexpected verification
+                    requests should be independently verified before
+                    interacting with them.
+                </p>
+
+
+                <a
+                    href="{{ tracking_link }}"
+                    class="sim-button"
+                >
+                    Simulated Verification
+                </a>
+
+
+                <p style="font-size:13px; color:#64748b;">
+                    This button leads only to the local cybersecurity
+                    training simulation.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div style="
+            margin-top:18px;
+            text-align:center;
+        ">
+
+            <a href="/" class="btn">
+                ← Return to Dashboard
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    GRAY SENTINEL
+    •
+    CONTROLLED SECURITY AWARENESS TRAINING
+
+</footer>
+
+</body>
+
+</html>

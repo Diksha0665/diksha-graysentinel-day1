@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GraySentinel | Phishing Simulator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     NAVIGATION BAR
+     ========================================= -->
+
+<nav class="navbar">
+
+    <div class="nav-content">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🛡
+            </div>
+
+            <div class="logo-text">
+
+                <h2>GRAY SENTINEL</h2>
+
+                <span>CYBER DEFENCE LAB</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-status">
+
+            <span class="status-dot"></span>
+
+            LOCAL LAB ONLINE
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================
+     MAIN CONTENT
+     ========================================= -->
+
+<main class="container">
+
+
+    <!-- =====================================
+         HERO SECTION
+         ===================================== -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+
+            <div>
+
+                <div class="eyebrow">
+
+                    SECURITY AWARENESS PLATFORM
+
+                </div>
+
+
+                <h1>
+
+                    Phishing Campaign
+
+                    <span>Simulator</span>
+
+                </h1>
+
+
+                <p>
+
+                    A controlled cybersecurity training environment
+                    for simulating phishing interactions and analyzing
+                    security-awareness metrics without collecting
+                    real credentials.
+
+                </p>
+
+            </div>
+
+
+            <a href="/campaign/new"
+               class="btn btn-primary">
+
+                ＋ New Simulation
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         GLOBAL STATISTICS
+         ===================================== -->
+
+    <section class="stats-grid">
+
+
+        <!-- Total Sent -->
+
+        <div class="stat-card cyan">
+
+            <div class="stat-label">
+
+                Total Sent
+
+            </div>
+
+            <div class="stat-number">
+
+                {{ total_sent }}
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Interactions -->
+
+        <div class="stat-card red">
+
+            <div class="stat-label">
+
+                Interactions
+
+            </div>
+
+            <div class="stat-number">
+
+                {{ total_clicked }}
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Click Rate -->
+
+        <div class="stat-card yellow">
+
+            <div class="stat-label">
+
+                Click Rate
+
+            </div>
+
+            <div class="stat-number">
+
+                {{ overall_rate }}%
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Mock Credentials -->
+
+        <div class="stat-card green">
+
+            <div class="stat-label">
+
+                Mock Credentials
+
+            </div>
+
+            <div class="stat-number">
+
+                {{ total_credentials }}
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         CAMPAIGN OVERVIEW
+         ===================================== -->
+
+    <section class="section">
+
+
+        <div class="section-header">
+
+            <div>
+
+                <div class="section-title">
+
+                    Campaign Overview
+
+                </div>
+
+
+                <div class="section-subtitle">
+
+                    Simulated awareness campaigns
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        {% if campaigns %}
+
+
+        <div class="campaign-grid">
+
+
+            {% for campaign in campaigns %}
+
+
+            <div class="campaign-card">
+
+
+                <!-- Campaign Header -->
+
+                <div class="campaign-top">
+
+
+                    <div>
+
+                        <div class="campaign-name">
+
+                            {{ campaign["name"] }}
+
+                        </div>
+
+
+                        <div class="campaign-subject">
+
+                            {{ campaign["subject"] }}
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Risk Badge -->
+
+                    {% if campaign["risk"] == "HIGH" %}
+
+                    <div class="risk-badge risk-high">
+
+                        ● HIGH RISK
+
+                    </div>
+
+
+                    {% elif campaign["risk"] == "MEDIUM" %}
+
+                    <div class="risk-badge risk-medium">
+
+                        ● MEDIUM RISK
+
+                    </div>
+
+
+                    {% else %}
+
+                    <div class="risk-badge risk-low">
+
+                        ● LOW RISK
+
+                    </div>
+
+                    {% endif %}
+
+
+                </div>
+
+
+
+                <!-- Campaign Statistics -->
+
+                <div class="campaign-stats">
+
+
+                    <!-- Recipients -->
+
+                    <div class="mini-stat">
+
+                        <span>
+
+                            RECIPIENTS
+
+                        </span>
+
+                        <strong>
+
+                            {{ campaign["total_sent"] }}
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- Clicked -->
+
+                    <div class="mini-stat">
+
+                        <span>
+
+                            CLICKED
+
+                        </span>
+
+                        <strong>
+
+                            {{ campaign["clicked"] }}
+
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- Click Rate -->
+
+                    <div class="mini-stat">
+
+                        <span>
+
+                            RATE
+
+                        </span>
+
+                        <strong>
+
+                            {{ campaign["click_rate"] }}%
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Risk Explanation -->
+
+                <div class="risk-description">
+
+
+                    {% if campaign["risk"] == "HIGH" %}
+
+
+                    ⚠️
+
+                    <strong>
+
+                        High Awareness Risk
+
+                    </strong>
+
+                    <br><br>
+
+                    A mock credential submission was detected.
+                    Additional security-awareness training is
+                    recommended.
+
+
+
+                    {% elif campaign["risk"] == "MEDIUM" %}
+
+
+                    ⚠️
+
+                    <strong>
+
+                        Medium Awareness Risk
+
+                    </strong>
+
+                    <br><br>
+
+                    Significant interaction was detected.
+                    Additional phishing-awareness training may
+                    be beneficial.
+
+
+
+                    {% else %}
+
+
+                    ✓
+
+                    <strong>
+
+                        Low Awareness Risk
+
+                    </strong>
+
+                    <br><br>
+
+                    Limited interaction was detected.
+                    Continue monitoring awareness performance.
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+
+                <!-- View Simulation -->
+
+                <div style="margin-top:18px;">
+
+                    <a
+                        href="/campaign/{{ campaign['id'] }}/preview"
+                        class="btn"
+                    >
+
+                        View Simulation →
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- No Campaign -->
+
+        <div class="campaign-card">
+
+            <p class="section-subtitle">
+
+                No simulations have been created yet.
+
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         INTERACTION EVENTS
+         ===================================== -->
+
+    <section class="section">
+
+
+        <div class="section-header">
+
+
+            <div>
+
+                <div class="section-title">
+
+                    Interaction Events
+
+                </div>
+
+
+                <div class="section-subtitle">
+
+                    Local test telemetry generated by the simulator
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        {% if events %}
+
+
+        <div class="table-wrapper">
+
+
+            <table class="data-table">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Campaign
+                        </th>
+
+                        <th>
+                            Recipient
+                        </th>
+
+                        <th>
+                            Timestamp
+                        </th>
+
+                        <th>
+                            IP
+                        </th>
+
+                        <th>
+                            User-Agent
+                        </th>
+
+                        <th>
+                            Location
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+
+                <tbody>
+
+
+                    {% for event in events %}
+
+
+                    <tr>
+
+
+                        <td>
+
+                            {{ event["campaign_name"] }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ event["recipient_name"] }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ event["clicked_at"] }}
+
+                        </td>
+
+
+                        <td class="localhost">
+
+                            {{ event["ip_address"] }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ event["user_agent"] }}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ event["location"] }}
+
+                        </td>
+
+
+                    </tr>
+
+
+                    {% endfor %}
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="campaign-card">
+
+            <p class="section-subtitle">
+
+                No interaction events recorded.
+
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================
+     FOOTER
+     ========================================= -->
+
+<footer class="footer">
+
+    GRAY SENTINEL CYBER DEFENCE LAB
+
+    •
+
+    PHISHING AWARENESS SIMULATOR
+
+    •
+
+    LOCAL TRAINING ENVIRONMENT
+
+</footer>
+
+
+</body>
+
+</html>
